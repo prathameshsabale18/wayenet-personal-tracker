@@ -792,9 +792,7 @@ export default function WaynenetApp() {
         {/* HEADER */}
         <div className="waynet-header">
           <div className="logo-brand">
-            <svg className="logo-icon" viewBox="0 0 64 40" role="img" aria-label="Waynenet red bat emblem">
-              <path className="logo-mark" d="M2 17 20 9l1 6 5 6 5 4 1-10 2 7 2-7 1 10 5-4 5-6 1-6 18 8-9 4-3 7-8 1-5 8-9-5-9 5-5-8-8-1-3-7z" />
-            </svg>
+            <img className="logo-icon" src="/bat_emblem.svg" alt="Waynenet bat emblem" />
             <div>
               <h1 className="waynet-title">WAYNENET</h1>
               <div className="waynet-sub">GOTHAM CITY // PERSONAL OPERATIONS</div>

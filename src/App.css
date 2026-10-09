@@ -2396,6 +2396,100 @@ body {
   }
 }
 
+/* COSTUME GREYS // MUTED CRIMSON */
+:root {
+  --c-bg: #050607;
+  --c-card: #0b0d10;
+  --c-border: #292c31;
+  --c-red: #9d343b;
+  --c-red-dark: #1d0d10;
+  --c-white: #dedfe1;
+  --c-gray: #a0a4aa;
+  --c-muted: #686d74;
+  --c-gold: #aeb2b8;
+}
+
+body {
+  background:
+    radial-gradient(ellipse at 50% -20%, rgba(116, 28, 34, 0.08), transparent 42rem),
+    linear-gradient(180deg, #0a0c0f 0%, #050607 50rem, #080a0d 100%);
+}
+
+.waynet-title {
+  color: #e3e4e6;
+  text-shadow: 0 0 22px rgba(160, 164, 170, 0.08);
+}
+
+.waynet-sub,
+.hud-panel-title {
+  color: #a0a4aa;
+}
+
+.logo-icon {
+  display: block;
+  width: 76px;
+  height: 24px;
+  min-width: 76px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 7px rgba(143, 37, 44, 0.2));
+}
+
+.badge-red {
+  color: #c16a70;
+  background: #160d0f;
+  border-color: rgba(157, 52, 59, 0.28);
+}
+
+.nav-tab.active,
+.btn-toggle.active {
+  color: #d0d2d5;
+  background: linear-gradient(110deg, #211316, #121416);
+  border-color: #754047;
+}
+
+.btn-add {
+  color: #eee9e9;
+  background: linear-gradient(135deg, #873039, #4e2026);
+  border-color: #8c3941;
+}
+
+.btn-toggle:hover:not(:disabled),
+.nav-tab:hover {
+  border-color: #8e5258;
+  color: #e0d8d9;
+}
+
+.suggestion-card {
+  border-left-color: #704047;
+}
+
+.suggestion-card > p small,
+.progress-stat strong,
+.alarm-time,
+.progress-suggestions li::marker {
+  color: #b95b63 !important;
+}
+
+.progress-bar-track i {
+  background: #913740;
+}
+
+@media (max-width: 700px) {
+  .logo-icon {
+    width: 66px;
+    height: 21px;
+    min-width: 66px;
+  }
+}
+
+@media (max-width: 420px) {
+  .logo-icon {
+    width: 56px;
+    height: 18px;
+    min-width: 56px;
+  }
+}
+
 /* RED BAT SIGNAL // GOTHAM NIGHT PALETTE */
 :root {
   --c-bg: #030304;
@@ -2495,5 +2589,99 @@ body {
     width: 48px;
     height: 32px;
     min-width: 48px;
+  }
+}
+
+/* FINAL COLOR PASS // COSTUME GREYS + MUTED CRIMSON */
+:root {
+  --c-bg: #050607;
+  --c-card: #0b0d10;
+  --c-border: #292c31;
+  --c-red: #9d343b;
+  --c-red-dark: #1d0d10;
+  --c-white: #dedfe1;
+  --c-gray: #a0a4aa;
+  --c-muted: #686d74;
+  --c-gold: #aeb2b8;
+}
+
+body {
+  background:
+    radial-gradient(ellipse at 50% -20%, rgba(116, 28, 34, 0.08), transparent 42rem),
+    linear-gradient(180deg, #0a0c0f 0%, #050607 50rem, #080a0d 100%);
+}
+
+.logo-icon {
+  display: block;
+  width: 76px;
+  height: 24px;
+  min-width: 76px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 7px rgba(143, 37, 44, 0.2));
+}
+
+.waynet-title {
+  color: #e3e4e6;
+  text-shadow: 0 0 22px rgba(160, 164, 170, 0.08);
+}
+
+.waynet-sub,
+.hud-panel-title {
+  color: #a0a4aa;
+}
+
+.badge-red {
+  color: #c16a70;
+  background: #160d0f;
+  border-color: rgba(157, 52, 59, 0.28);
+}
+
+.nav-tab.active,
+.btn-toggle.active {
+  color: #d0d2d5;
+  background: linear-gradient(110deg, #211316, #121416);
+  border-color: #754047;
+}
+
+.btn-add {
+  color: #eee9e9;
+  background: linear-gradient(135deg, #873039, #4e2026);
+  border-color: #8c3941;
+}
+
+.btn-toggle:hover:not(:disabled),
+.nav-tab:hover {
+  border-color: #8e5258;
+  color: #e0d8d9;
+}
+
+.suggestion-card {
+  border-left-color: #704047;
+}
+
+.suggestion-card > p small,
+.progress-stat strong,
+.alarm-time,
+.progress-suggestions li::marker {
+  color: #b95b63 !important;
+}
+
+.progress-bar-track i {
+  background: #913740;
+}
+
+@media (max-width: 700px) {
+  .logo-icon {
+    width: 66px;
+    height: 21px;
+    min-width: 66px;
+  }
+}
+
+@media (max-width: 420px) {
+  .logo-icon {
+    width: 56px;
+    height: 18px;
+    min-width: 56px;
   }
 }
