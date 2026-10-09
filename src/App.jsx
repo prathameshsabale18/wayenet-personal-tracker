@@ -16,12 +16,22 @@ function getDayKey(date = new Date()) {
 }
 
 function formatClockTime(date = new Date()) {
-  return date.toLocaleTimeString("en-IN", {
+  return date.toLocaleTimeString("en-US", {
     hour: "2-digit",
     minute: "2-digit",
-    second: "2-digit",
     hour12: true
   });
+}
+
+function formatRoutineTime(time) {
+  const [hour, minute] = time.split(":").map(Number);
+  const period = hour < 12 ? "AM" : "PM";
+  const displayHour = hour % 12 || 12;
+  return `${displayHour}:${String(minute).padStart(2, "0")} ${period}`;
+}
+
+function formatRoutineRange(start, end) {
+  return `${formatRoutineTime(start)}–${formatRoutineTime(end)}`;
 }
 
 function timeToMinutes(time) {
@@ -453,7 +463,7 @@ export default function WaynenetApp() {
       const currentBlock = getScheduledBlock(schedule, time);
       setActiveScheduleBlock(currentBlock);
       setActiveWindowLabel(currentBlock
-        ? `${currentBlock.start}–${currentBlock.end} // ${currentBlock.label}`
+        ? `${formatRoutineRange(currentBlock.start, currentBlock.end)} // ${currentBlock.label}`
         : "NO SCHEDULED BLOCK");
       const startingBlocks = schedule.filter(block => timeToMinutes(block.start) === time);
       if (notificationPermission === "granted" && startingBlocks.length > 0) {
@@ -896,8 +906,8 @@ export default function WaynenetApp() {
                 }}>EDIT ROUTINE</button>
               </div>
               {todaysRoutine.map(block => (
-                <div key={`${block.start}-${block.label}`} className="alarm-row" style={{ gridTemplateColumns: "95px minmax(0, 1fr)", padding: "9px 12px" }}>
-                  <span className="alarm-time">{block.start}–{block.end}</span>
+                <div key={`${block.start}-${block.label}`} className="alarm-row" style={{ gridTemplateColumns: "minmax(120px, auto) minmax(0, 1fr)", padding: "9px 12px" }}>
+                  <span className="alarm-time">{formatRoutineRange(block.start, block.end)}</span>
                   <span className="alarm-label">{block.label}</span>
                 </div>
               ))}
@@ -982,8 +992,8 @@ export default function WaynenetApp() {
                   setIsEditModalOpen(true);
                 }}>EDIT ROUTINE</button>
               </div>
-              {todaysRoutine.map(block => <div key={getRoutineBlockKey(block)} className="alarm-row" style={{ gridTemplateColumns: "95px minmax(0, 1fr)", padding: "9px 12px" }}>
-                <span className="alarm-time">{block.start}–{block.end}</span>
+              {todaysRoutine.map(block => <div key={getRoutineBlockKey(block)} className="alarm-row" style={{ gridTemplateColumns: "minmax(120px, auto) minmax(0, 1fr)", padding: "9px 12px" }}>
+                <span className="alarm-time">{formatRoutineRange(block.start, block.end)}</span>
                 <span className="alarm-label">{block.label}</span>
               </div>)}
             </div>
@@ -1232,7 +1242,7 @@ export default function WaynenetApp() {
                     <div key={idx} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "#000", padding: "8px 12px", borderRadius: "4px", border: "1px solid #222" }}>
                       <div>
                         <div style={{ fontSize: "0.78rem", color: "#fff", fontWeight: "bold" }}>{blk.label}</div>
-                        <div style={{ fontSize: "0.68rem", color: "var(--c-red)" }}>{blk.start} - {blk.end}</div>
+                        <div style={{ fontSize: "0.68rem", color: "var(--c-red)" }}>{formatRoutineRange(blk.start, blk.end)}</div>
                       </div>
                       <div style={{ display: "flex", gap: "6px" }}>
                         <button onClick={() => handleEditBlock(idx)} className="btn-toggle" style={{ padding: "4px 7px" }}>EDIT</button>

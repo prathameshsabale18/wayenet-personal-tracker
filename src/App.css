@@ -2670,6 +2670,10 @@ body {
   background: #913740;
 }
 
+.alarm-time {
+  white-space: nowrap;
+}
+
 @media (max-width: 700px) {
   .logo-icon {
     width: 66px;
