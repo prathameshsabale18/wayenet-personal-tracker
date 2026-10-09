@@ -69,6 +69,42 @@ const DAILY_SCHEDULE = [
   { start: "00:00", end: "00:30", label: "GET READY FOR SLEEP", actions: ["Get ready for sleep."] }
 ];
 
+const SUGGESTION_LIBRARY = [
+  { category: "MONEY", text: "Find 5 qualified PageFix prospects and record their biggest problem." },
+  { category: "MONEY", text: "Follow up with every potential client whose follow-up is due." },
+  { category: "MONEY", text: "Send 5 personalized outreach messages." },
+  { category: "MONEY", text: "Improve one part of your offer to make its value clearer." },
+  { category: "MONEY", text: "Spend 20 minutes removing one bottleneck in your sales process." },
+  { category: "MONEY", text: "Review your expenses and identify one unnecessary cost." },
+  { category: "MONEY", text: "Create one portfolio asset that helps convert prospects." },
+  { category: "MONEY", text: "Review your pipeline and define the next action for every warm lead." },
+  { category: "CAREER", text: "Complete 5 Python problems without looking at solutions." },
+  { category: "CAREER", text: "Build one small feature in your current technical project." },
+  { category: "CAREER", text: "Spend 20 minutes revising a difficult Python concept." },
+  { category: "ACADEMICS", text: "Finish one pending topic or assignment before starting something new." },
+  { category: "ACADEMICS", text: "Complete 10 practice questions from a weak topic." },
+  { category: "BODY", text: "Complete your scheduled training without unnecessary distractions." },
+  { category: "BODY", text: "Practice MMA footwork or shadowboxing for 15 minutes when appropriate." },
+  { category: "BODY", text: "Record your strength progress or weekly physique measurements." },
+  { category: "BODY", text: "Complete 15 minutes of mobility on a recovery day." },
+  { category: "FASTING", text: "Finish your last meal by 7 PM when practical." },
+  { category: "FASTING", text: "Avoid unplanned late-night snacking after your final meal." },
+  { category: "FASTING", text: "Maintain a consistent overnight eating window without compromising recovery." },
+  { category: "DISCIPLINE", text: "Keep your phone away during the next focused work block." },
+  { category: "DISCIPLINE", text: "Complete your most avoided important task before optional work." },
+  { category: "DISCIPLINE", text: "Prepare tomorrow's top 3 priorities before ending the day." },
+  { category: "DISCIPLINE", text: "Remove one distraction from your work environment." },
+  { category: "SPIRITUALITY", text: "Read Hanuman Chalisa with attention rather than rushing through it." },
+  { category: "SPIRITUALITY", text: "Spend 10 minutes in prayer or meditation." },
+  { category: "SPIRITUALITY", text: "Perform one useful act of service without expecting a reward." },
+  { category: "FAMILY BUSINESS", text: "Resolve one pending family-business task if any exists." },
+  { category: "FAMILY BUSINESS", text: "Organize one invoice, record, or operational process if needed." },
+  { category: "FINANCE", text: "Record today's income and expenses accurately." },
+  { category: "FINANCE", text: "Calculate the remaining savings needed for your next purchase." },
+  { category: "REVIEW", text: "Identify the biggest waste of time from today and eliminate it tomorrow." },
+  { category: "REVIEW", text: "Review this week's results and choose one measurable improvement." }
+];
+
 const DEFAULT_STATE = {
   goals: [],
   weekdayRoutine: DAILY_SCHEDULE,
@@ -93,7 +129,7 @@ function normalizeAppData(data, resetRoutine = false) {
   return {
     ...base,
     ...data,
-    goals: Array.isArray(data?.goals) ? data.goals : [],
+    goals: [],
     weekdayRoutine: resetRoutine ? DAILY_SCHEDULE : Array.isArray(data?.weekdayRoutine) ? data.weekdayRoutine : DAILY_SCHEDULE,
     weekendRoutine: resetRoutine ? DAILY_SCHEDULE : Array.isArray(data?.weekendRoutine) ? data.weekendRoutine : DAILY_SCHEDULE,
     routineSchedule: resetRoutine ? DAILY_SCHEDULE : Array.isArray(data?.weekdayRoutine) ? data.weekdayRoutine : DAILY_SCHEDULE,
@@ -179,7 +215,6 @@ export default function WaynenetApp() {
   const [newTaskText, setNewTaskText] = useState("");
   const [newTaskCategory, setNewTaskCategory] = useState("goal");
   const [dailyTaskPanel, setDailyTaskPanel] = useState("add");
-  const [goalsDraft, setGoalsDraft] = useState("");
 
   const applyProductState = (stored) => {
     if (!stored?.appData) return null;
@@ -204,7 +239,6 @@ export default function WaynenetApp() {
       lastCompletedDay: needsRoutineReset || !hasCompletedDay ? null : stored.lastCompletedDay || null
     };
     setAppData(normalized.appData);
-    setGoalsDraft(normalized.appData.goals.join("\n"));
     setDayKey(normalized.dayKey || getDayKey());
     setHistory(normalized.history);
     setActivityLog(normalized.activityLog);
@@ -480,13 +514,6 @@ export default function WaynenetApp() {
     setNewTaskCategory("goal");
   };
 
-  const saveGoals = () => {
-    const goals = [...new Set(goalsDraft.split("\n").map(goal => goal.trim()).filter(Boolean))];
-    setAppData(previous => ({ ...previous, goals }));
-    setGoalsDraft(goals.join("\n"));
-    recordProgress("goals_updated", "Personal goals updated", `${goals.length} goals saved for daily task suggestions.`);
-  };
-
   const removeDailyTask = (id, e) => {
     e.stopPropagation();
     const task = appData.dailyTasks.find(item => item.id === id);
@@ -611,27 +638,11 @@ export default function WaynenetApp() {
   const todaysRoutine = todayClock.getDay() === 0 || todayClock.getDay() === 6
     ? appData.weekendRoutine
     : appData.weekdayRoutine;
-  const savedGoals = appData.goals.filter(goal => typeof goal === "string" && goal.trim());
   const suggestionDaySeed = Math.floor(new Date(`${dayKey}T12:00:00`).getTime() / 86400000);
-  const suggestionTemplates = [
-    (goal, block, action) => `${goal}: ${action} during ${block.label}.`,
-    (goal, block, action) => `Use ${block.label} to move “${goal}” forward: ${action}.`,
-    (goal, block, action) => `Goal focus — ${goal}. In ${block.label}, ${action}.`,
-    (goal, block, action) => `Set a clear finish line for “${goal}” in ${block.label}: ${action}.`,
-    (goal, block, action) => `Before ${block.label} ends, make one measurable step on “${goal}”: ${action}.`
-  ];
-  const dailySuggestions = savedGoals.length && todaysRoutine.length
-    ? Array.from({ length: 3 }, (_, index) => {
-        const goal = savedGoals[(suggestionDaySeed + index) % savedGoals.length];
-        const block = todaysRoutine[(suggestionDaySeed * 7 + index) % todaysRoutine.length];
-        const action = block.actions?.[0]?.replace(/[.!?]+$/, "") || `take one concrete step toward “${goal}”`;
-        return {
-          text: suggestionTemplates[(suggestionDaySeed + index) % suggestionTemplates.length](goal, block, action),
-          routineId: getRoutineBlockKey(block),
-          routineLabel: block.label
-        };
-      })
-    : [];
+  const suggestionStart = suggestionDaySeed % SUGGESTION_LIBRARY.length;
+  const dailySuggestions = Array.from({ length: 6 }, (_, index) =>
+    SUGGESTION_LIBRARY[(suggestionStart + index) % SUGGESTION_LIBRARY.length]
+  );
   const completedBacklogCount = appData.backlog.filter(task => task.done && task.resolvedAt && getDayKey(new Date(task.resolvedAt)) === dayKey).length;
 
   const hasTodayProgress = todayProgress.completed > 0 || completedBacklogCount > 0 || appData.behaviorReviewDate === dayKey;
@@ -663,7 +674,7 @@ export default function WaynenetApp() {
     ...(taskDays.length >= 3 && recentAverage < 70 ? ["Recent completion is below 70%. Plan fewer tasks, then finish the highest priority item first."] : []),
     ...(taskDays.length >= 3 && recentAverage >= 85 ? ["Your recent completion is strong. Keep the routine steady and raise the challenge gradually."] : []),
     ...(appData.behaviorReviewDate !== dayKey ? ["When your day is finished, review the four non-negotiables to record which you kept."] : []),
-    ...(!recentDays.length ? ["No progress history yet. Add daily tasks from your goals, then record completions as you go."] : [])
+    ...(!recentDays.length ? ["No progress history yet. Add daily tasks, then record completions as you go."] : [])
   ];
 
   const exportProgressRecords = () => {
@@ -883,7 +894,7 @@ export default function WaynenetApp() {
               ))}
             </div>
 
-            {/* DAILY TASKS AND GOAL-BASED SUGGESTIONS */}
+            {/* DAILY TASKS AND CURATED SUGGESTIONS */}
             <div className="hud-panel">
               <div className="hud-panel-title">
                 <span>Daily Task</span>
@@ -898,16 +909,16 @@ export default function WaynenetApp() {
                 <input type="text" className="input-field" placeholder="Daily task or habit..." value={newTaskText} onChange={event => setNewTaskText(event.target.value)} />
                 <button className="btn-add" onClick={addDailyTask}>+ ADD</button>
               </div> : <div style={{ display: "grid", gap: "12px" }}>
-                <label style={{ display: "grid", gap: "6px", color: "#aaa", fontSize: "0.75rem", letterSpacing: "0.5px" }}>
-                  YOUR GOALS · ONE PER LINE
-                  <textarea className="input-field" rows={3} value={goalsDraft} onChange={event => setGoalsDraft(event.target.value)} placeholder="Add the goals these daily tasks should move forward." />
-                </label>
-                <button type="button" className="btn-toggle" onClick={saveGoals}>SAVE GOALS</button>
-                <div style={{ borderTop: "1px solid #252525", paddingTop: "12px", color: "#aaa", fontSize: "0.72rem" }}>TODAY'S SUGGESTIONS · GENERATED FROM YOUR SAVED GOALS AND ROUTINE</div>
-                {dailySuggestions.length ? dailySuggestions.map((suggestion, index) => <div key={`${suggestion.routineId}-${index}`} style={{ display: "flex", alignItems: "center", gap: "12px", padding: "10px", background: "#090909", border: "1px solid #222" }}>
-                  <p style={{ flex: 1, color: "#ddd", lineHeight: 1.5 }}>{suggestion.text}<small style={{ display: "block", marginTop: "5px", color: "#777" }}>ROUTINE REF · {suggestion.routineId}</small></p>
-                  <button type="button" className="btn-toggle" onClick={() => { addTaskToTracker(suggestion.text, suggestion.routineId); setDailyTaskPanel("add"); }}>ADD</button>
-                </div>) : <p style={{ color: "#777", fontSize: "0.78rem", lineHeight: 1.6 }}>Save at least one goal above and add routine actions in Edit Routine. Suggestions will rotate each day from those saved details.</p>}
+                <div style={{ border: "1px solid #292929", background: "#090909", padding: "14px", display: "grid", gap: "5px" }}>
+                  <span style={{ color: "#aaa", fontSize: "0.7rem", letterSpacing: "0.7px" }}>FIRST 90 DAYS · PAGEFIX REVENUE</span>
+                  <strong style={{ color: "#f04444", fontSize: "1.2rem" }}>₹6 lakh collected revenue</strong>
+                  <span style={{ color: "#777", fontSize: "0.72rem" }}>Aggressive 90-day target</span>
+                </div>
+                <div style={{ borderTop: "1px solid #252525", paddingTop: "12px", color: "#aaa", fontSize: "0.72rem" }}>TODAY'S TASK PICKS · 6 AT A TIME · ROTATES DAILY</div>
+                {dailySuggestions.map(suggestion => <div key={`${suggestion.category}-${suggestion.text}`} style={{ display: "flex", alignItems: "center", gap: "12px", padding: "10px", background: "#090909", border: "1px solid #222" }}>
+                  <p style={{ flex: 1, color: "#ddd", lineHeight: 1.5, margin: 0 }}><small style={{ display: "block", marginBottom: "4px", color: "#f04444", letterSpacing: "0.6px" }}>{suggestion.category}</small>{suggestion.text}</p>
+                  <button type="button" className="btn-toggle" disabled={appData.dailyTasks.some(task => task.text === suggestion.text && !task.done)} onClick={() => addTaskToTracker(suggestion.text)}>{appData.dailyTasks.some(task => task.text === suggestion.text && !task.done) ? "ADDED" : "ADD"}</button>
+                </div>)}
               </div>}
 
               {appData.dailyTasks.length === 0 && openBacklog.length === 0 ? (
