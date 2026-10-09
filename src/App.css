@@ -2275,3 +2275,123 @@ select:focus-visible {
     justify-self: end;
   }
 }
+
+/* GOTHAM // BAT SIGNAL PALETTE */
+:root {
+  --c-bg: #030405;
+  --c-card: #090a0c;
+  --c-border: #25272a;
+  --c-red: #e9c34f;
+  --c-red-dark: #211c0e;
+  --c-white: #e5e3dc;
+  --c-gray: #aaa9a2;
+  --c-muted: #65666a;
+  --c-gold: #f0cf59;
+}
+
+body {
+  background:
+    radial-gradient(ellipse at 50% -20%, rgba(195, 161, 62, 0.08), transparent 42rem),
+    linear-gradient(180deg, #08090b 0%, #030405 50rem, #060709 100%);
+}
+
+.waynet-header {
+  border-bottom-color: #373323;
+}
+
+.logo-icon {
+  width: 60px;
+  height: 38px;
+  min-width: 60px;
+  filter: drop-shadow(0 0 9px rgba(234, 195, 74, 0.28));
+}
+
+.logo-ring {
+  fill: #e9c34f;
+  stroke: #f5dc80;
+  stroke-width: 1;
+}
+
+.logo-mark {
+  fill: #090a0c;
+  stroke: #090a0c;
+  stroke-width: 0.7;
+  stroke-linejoin: round;
+}
+
+.waynet-title {
+  color: #f0eee7;
+  text-shadow: 0 0 22px rgba(234, 195, 74, 0.12);
+}
+
+.waynet-sub,
+.hud-panel-title,
+.philosophy-tag {
+  color: #b1a36c;
+}
+
+.philosophy-banner {
+  border-left-color: #c4a841;
+}
+
+.badge-red {
+  color: #e9c34f;
+  background: #19170f;
+  border-color: rgba(233, 195, 79, 0.3);
+}
+
+.nav-tab.active,
+.btn-toggle.active {
+  color: #f2d875;
+  background: linear-gradient(110deg, #211d10, #13130f);
+  border-color: #99813a;
+}
+
+.btn-add {
+  color: #100f09;
+  background: linear-gradient(135deg, #f0d15e, #b99432);
+  border-color: #f2d76d;
+}
+
+.btn-toggle:hover:not(:disabled),
+.nav-tab:hover {
+  border-color: #d1b54c;
+  color: #f2df9c;
+}
+
+.suggestion-card {
+  border-left-color: #b99c43;
+}
+
+.suggestion-card > p small {
+  color: #e5c75b !important;
+}
+
+.progress-stat strong,
+.alarm-time {
+  color: #e9c34f;
+}
+
+.progress-bar-track i {
+  background: #d5b54b;
+}
+
+.progress-suggestions li::marker {
+  color: #e9c34f;
+}
+
+@media (max-width: 700px) {
+  .logo-icon {
+    width: 52px;
+    height: 34px;
+    min-width: 52px;
+  }
+}
+
+@media (max-width: 420px) {
+  .logo-icon {
+    width: 44px;
+    height: 30px;
+    min-width: 44px;
+  }
+}

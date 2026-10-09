@@ -783,14 +783,13 @@ export default function WaynenetApp() {
         {/* HEADER */}
         <div className="waynet-header">
           <div className="logo-brand">
-            <svg className="logo-icon" viewBox="0 0 48 48" role="img" aria-label="Waynenet emblem">
-              <circle className="logo-ring" cx="24" cy="24" r="21" />
-              <path className="logo-mark" d="M8 17l9 3 7-6 7 6 9-3-4 13-8-5-4 9-4-9-8 5z" />
-              <path className="logo-core" d="M24 18l2.1 4.2 4.7.7-3.4 3.3.8 4.7-4.2-2.2-4.2 2.2.8-4.7-3.4-3.3 4.7-.7z" />
+            <svg className="logo-icon" viewBox="0 0 64 40" role="img" aria-label="Waynenet bat emblem">
+              <ellipse className="logo-ring" cx="32" cy="20" rx="30" ry="18" />
+              <path className="logo-mark" d="M5 13c7-1 12 1 17 6 1-7 5-10 10-10 5 0 9 3 10 10 5-5 10-7 17-6l-5 14-8-3-6 10-9-8-9 8-6-10-8 3z" />
             </svg>
             <div>
               <h1 className="waynet-title">WAYNENET</h1>
-              <div className="waynet-sub">PERSONAL HABIT TRACKER // DAILY ROUTINE</div>
+              <div className="waynet-sub">GOTHAM CITY // PERSONAL OPERATIONS</div>
             </div>
           </div>
           <div className="waynet-clock">{currentTimeStr}</div>
