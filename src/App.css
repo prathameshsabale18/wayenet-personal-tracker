@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
   --c-bg: #080808;
@@ -1875,5 +1875,403 @@ code {
 
   .activity-ledger-row time {
     grid-column: 1 / -1;
+  }
+}
+
+/* WAYNENET // NIGHT ARMOR THEME + RESPONSIVE FINISH */
+:root {
+  --c-bg: #050608;
+  --c-card: #0b0d11;
+  --c-border: #23262c;
+  --c-red: #d94343;
+  --c-red-dark: #220d10;
+  --c-white: #e8e6e2;
+  --c-gray: #aaa9a6;
+  --c-muted: #666872;
+  --c-gold: #b99a62;
+}
+
+html {
+  min-width: 320px;
+  background: var(--c-bg);
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  color: var(--c-white);
+  background:
+    radial-gradient(ellipse at 50% -24%, rgba(115, 18, 25, 0.13), transparent 48rem),
+    linear-gradient(180deg, #08090b 0%, #050608 46rem, #07080a 100%);
+  text-align: left;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  text-align: left;
+  border: 0;
+}
+
+.waynet-container {
+  min-height: 100vh;
+  background: transparent;
+}
+
+.wayrust-wrapper {
+  width: min(1440px, 100%);
+  padding: clamp(14px, 3vw, 38px) clamp(12px, 3.5vw, 48px) 48px;
+}
+
+.waynet-header {
+  position: relative;
+  padding: 4px 0 20px;
+  margin-bottom: 22px;
+  border-bottom-color: #29231e;
+}
+
+.logo-brand {
+  gap: 14px;
+}
+
+.logo-icon {
+  display: block;
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  overflow: visible;
+  background: none;
+  border-radius: 0;
+  filter: drop-shadow(0 0 10px rgba(199, 48, 50, 0.3));
+}
+
+.logo-ring {
+  fill: #0b0d10;
+  stroke: var(--c-gold);
+  stroke-width: 1.4;
+}
+
+.logo-mark {
+  fill: #17191d;
+  stroke: var(--c-red);
+  stroke-width: 1.5;
+  stroke-linejoin: bevel;
+}
+
+.logo-core {
+  fill: var(--c-gold);
+  filter: drop-shadow(0 0 3px rgba(226, 179, 92, 0.6));
+}
+
+.waynet-title {
+  color: #ece8e0;
+  font-family: "Cinzel", Georgia, serif;
+  font-size: clamp(1.25rem, 2.3vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.waynet-sub {
+  color: #8c8982;
+  font-size: clamp(0.58rem, 1vw, 0.7rem);
+  letter-spacing: 0.08em;
+}
+
+.waynet-clock {
+  color: var(--c-gold);
+  font-variant-numeric: tabular-nums;
+}
+
+.philosophy-banner,
+.hud-panel {
+  background: linear-gradient(145deg, rgba(15, 17, 21, 0.98), rgba(9, 10, 13, 0.98));
+  border-color: #25272b;
+  border-radius: 3px;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.18);
+}
+
+.hud-panel {
+  padding: clamp(14px, 2vw, 22px);
+}
+
+.hud-panel-title {
+  color: #b5b0a7;
+  border-bottom-color: #28251f;
+  letter-spacing: 0.09em;
+}
+
+.badge-red {
+  color: #e36b63;
+  background: #1e0e10;
+  border-color: rgba(217, 67, 67, 0.27);
+}
+
+.nav-bar {
+  gap: 9px;
+}
+
+.nav-tab {
+  background: #0a0c0f;
+  border-color: #292b2f;
+  border-radius: 3px;
+  color: #a6a5a1;
+}
+
+.nav-tab.active,
+.btn-toggle.active {
+  color: #e5c786;
+  background: linear-gradient(110deg, #251214, #17130e);
+  border-color: #8c3332;
+}
+
+.btn-add,
+.btn-toggle,
+.nav-tab,
+.input-field,
+select {
+  border-radius: 3px;
+}
+
+.btn-add {
+  background: linear-gradient(135deg, #a92e32, #6c1a20);
+  border-color: #b34440;
+  color: #fff2df;
+}
+
+.btn-toggle {
+  width: auto;
+  min-width: 76px;
+  color: #c9c2b5;
+  border-color: #38332b;
+}
+
+.btn-toggle:hover:not(:disabled),
+.nav-tab:hover {
+  border-color: var(--c-gold);
+  color: #e7d3a3;
+}
+
+.philosophy-tag,
+.progress-stat strong,
+.alarm-time {
+  color: var(--c-gold);
+}
+
+.philosophy-banner {
+  border-left: 2px solid #7e292b;
+}
+
+.input-field,
+input,
+textarea,
+select {
+  min-width: 0;
+  color: #e7e4de;
+  background-color: #080a0d;
+  border-color: #303136;
+}
+
+.suggestion-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  padding: 13px;
+  background: #080a0d;
+  border: 1px solid #292b2f;
+  border-left: 2px solid #745b37;
+}
+
+.suggestion-card > p {
+  min-width: 0;
+  color: #d5d1ca !important;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+.suggestion-card > p small {
+  color: var(--c-gold) !important;
+  font-size: 0.63rem;
+  font-weight: 700;
+  letter-spacing: 0.12em !important;
+}
+
+.suggestion-card .btn-toggle {
+  width: auto;
+  min-width: 68px;
+  min-height: 40px;
+  padding: 8px 13px;
+  white-space: nowrap;
+}
+
+.suggestion-card .btn-toggle:disabled {
+  color: #8b8068;
+  border-color: #49402f;
+  opacity: 0.9;
+}
+
+.progress-stat,
+.progress-chart-card {
+  background: #080a0d;
+  border-color: #292b2f;
+}
+
+.progress-stat span,
+.progress-storage-note,
+.progress-empty {
+  color: #96928a;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--c-gold);
+  outline-offset: 2px;
+}
+
+@media (min-width: 1200px) {
+  .wayrust-wrapper {
+    padding-top: 32px;
+  }
+
+  .nav-tab {
+    padding: 13px 12px;
+  }
+}
+
+@media (max-width: 700px) {
+  .wayrust-wrapper {
+    padding: 14px 12px 32px;
+  }
+
+  .waynet-header {
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 10px;
+  }
+
+  .logo-brand {
+    width: auto;
+    flex: 1;
+    gap: 10px;
+  }
+
+  .logo-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+  }
+
+  .waynet-clock {
+    width: auto;
+    font-size: 0.72rem;
+  }
+
+  .nav-bar {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .nav-tab {
+    min-height: 44px;
+    padding: 9px 5px;
+    font-size: clamp(0.56rem, 2.2vw, 0.7rem);
+    letter-spacing: 0.01em;
+  }
+
+  .hud-panel-title {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .suggestion-card {
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .progress-stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 420px) {
+  .wayrust-wrapper {
+    padding: 11px 9px 24px;
+  }
+
+  .waynet-header {
+    align-items: flex-start;
+  }
+
+  .logo-icon {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+  }
+
+  .waynet-sub {
+    max-width: 190px;
+    line-height: 1.4;
+    font-size: 0.52rem;
+  }
+
+  .waynet-clock {
+    padding-top: 9px;
+    font-size: 0.62rem;
+  }
+
+  .hud-panel {
+    padding: 12px !important;
+  }
+
+  .suggestion-card {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .suggestion-card .btn-toggle {
+    min-width: 56px;
+    padding-inline: 8px;
+  }
+
+  .progress-history-row {
+    grid-template-columns: 64px minmax(0, 1fr) 60px;
+  }
+
+  .discipline-order-row {
+    grid-template-columns: 24px minmax(0, 1fr);
+  }
+
+  .discipline-order-row small {
+    grid-column: 2;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 350px) {
+  .waynet-title {
+    letter-spacing: 0.1em;
+  }
+
+  .waynet-clock {
+    font-size: 0.55rem;
+  }
+
+  .nav-tab {
+    font-size: 0.53rem;
+  }
+
+  .suggestion-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .suggestion-card .btn-toggle {
+    justify-self: end;
   }
 }

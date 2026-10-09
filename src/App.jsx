@@ -783,7 +783,11 @@ export default function WaynenetApp() {
         {/* HEADER */}
         <div className="waynet-header">
           <div className="logo-brand">
-            <div className="logo-icon" />
+            <svg className="logo-icon" viewBox="0 0 48 48" role="img" aria-label="Waynenet emblem">
+              <circle className="logo-ring" cx="24" cy="24" r="21" />
+              <path className="logo-mark" d="M8 17l9 3 7-6 7 6 9-3-4 13-8-5-4 9-4-9-8 5z" />
+              <path className="logo-core" d="M24 18l2.1 4.2 4.7.7-3.4 3.3.8 4.7-4.2-2.2-4.2 2.2.8-4.7-3.4-3.3 4.7-.7z" />
+            </svg>
             <div>
               <h1 className="waynet-title">WAYNENET</h1>
               <div className="waynet-sub">PERSONAL HABIT TRACKER // DAILY ROUTINE</div>
@@ -915,7 +919,7 @@ export default function WaynenetApp() {
                   <span style={{ color: "#777", fontSize: "0.72rem" }}>Aggressive 90-day target</span>
                 </div>
                 <div style={{ borderTop: "1px solid #252525", paddingTop: "12px", color: "#aaa", fontSize: "0.72rem" }}>TODAY'S TASK PICKS · 6 AT A TIME · ROTATES DAILY</div>
-                {dailySuggestions.map(suggestion => <div key={`${suggestion.category}-${suggestion.text}`} style={{ display: "flex", alignItems: "center", gap: "12px", padding: "10px", background: "#090909", border: "1px solid #222" }}>
+                {dailySuggestions.map(suggestion => <div className="suggestion-card" key={`${suggestion.category}-${suggestion.text}`}>
                   <p style={{ flex: 1, color: "#ddd", lineHeight: 1.5, margin: 0 }}><small style={{ display: "block", marginBottom: "4px", color: "#f04444", letterSpacing: "0.6px" }}>{suggestion.category}</small>{suggestion.text}</p>
                   <button type="button" className="btn-toggle" disabled={appData.dailyTasks.some(task => task.text === suggestion.text && !task.done)} onClick={() => addTaskToTracker(suggestion.text)}>{appData.dailyTasks.some(task => task.text === suggestion.text && !task.done) ? "ADDED" : "ADD"}</button>
                 </div>)}
