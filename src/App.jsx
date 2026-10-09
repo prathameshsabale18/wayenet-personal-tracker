@@ -15,6 +15,15 @@ function getDayKey(date = new Date()) {
   return `${y}-${m}-${d}`;
 }
 
+function formatClockTime(date = new Date()) {
+  return date.toLocaleTimeString("en-IN", {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true
+  });
+}
+
 function timeToMinutes(time) {
   const [hours, minutes] = time.split(":").map(Number);
   return hours * 60 + minutes;
@@ -203,7 +212,7 @@ export default function WaynenetApp() {
 
   // NAVIGATION & CLOCK STATES
   const [activeTab, setActiveTab] = useState("docket");
-  const [currentTimeStr, setCurrentTimeStr] = useState(new Date().toLocaleTimeString());
+  const [currentTimeStr, setCurrentTimeStr] = useState(formatClockTime());
   const [quoteIdx, setQuoteIdx] = useState(0);
   const [activeWindowLabel, setActiveWindowLabel] = useState("WAITING");
   const [activeScheduleBlock, setActiveScheduleBlock] = useState(null);
@@ -419,7 +428,7 @@ export default function WaynenetApp() {
       const now = new Date();
       const todayKey = getDayKey(now);
       const time = now.getHours() * 60 + now.getMinutes();
-      setCurrentTimeStr(now.toLocaleTimeString());
+      setCurrentTimeStr(formatClockTime(now));
       if (!databaseReady) return;
 
       if (todayKey !== dayKey) {
@@ -783,9 +792,8 @@ export default function WaynenetApp() {
         {/* HEADER */}
         <div className="waynet-header">
           <div className="logo-brand">
-            <svg className="logo-icon" viewBox="0 0 64 40" role="img" aria-label="Waynenet bat emblem">
-              <ellipse className="logo-ring" cx="32" cy="20" rx="30" ry="18" />
-              <path className="logo-mark" d="M5 13c7-1 12 1 17 6 1-7 5-10 10-10 5 0 9 3 10 10 5-5 10-7 17-6l-5 14-8-3-6 10-9-8-9 8-6-10-8 3z" />
+            <svg className="logo-icon" viewBox="0 0 64 40" role="img" aria-label="Waynenet red bat emblem">
+              <path className="logo-mark" d="M2 17 20 9l1 6 5 6 5 4 1-10 2 7 2-7 1 10 5-4 5-6 1-6 18 8-9 4-3 7-8 1-5 8-9-5-9 5-5-8-8-1-3-7z" />
             </svg>
             <div>
               <h1 className="waynet-title">WAYNENET</h1>

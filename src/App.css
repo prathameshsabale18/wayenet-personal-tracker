@@ -2395,3 +2395,105 @@ body {
     min-width: 44px;
   }
 }
+
+/* RED BAT SIGNAL // GOTHAM NIGHT PALETTE */
+:root {
+  --c-bg: #030304;
+  --c-card: #09090b;
+  --c-border: #242428;
+  --c-red: #f20b18;
+  --c-red-dark: #28090d;
+  --c-white: #e8e6e5;
+  --c-gray: #aaa7aa;
+  --c-muted: #66636a;
+  --c-gold: #e7353e;
+}
+
+body {
+  background:
+    radial-gradient(ellipse at 50% -20%, rgba(190, 8, 22, 0.09), transparent 42rem),
+    linear-gradient(180deg, #080809 0%, #030304 50rem, #060607 100%);
+}
+
+.logo-icon {
+  width: 64px;
+  height: 40px;
+  min-width: 64px;
+  filter: drop-shadow(0 0 9px rgba(242, 11, 24, 0.25));
+}
+
+.logo-mark {
+  fill: #f20b18;
+  stroke: #f20b18;
+  stroke-width: 0.5;
+}
+
+.waynet-title {
+  color: #efedeb;
+  text-shadow: 0 0 22px rgba(242, 11, 24, 0.1);
+}
+
+.waynet-sub,
+.hud-panel-title {
+  color: #aaa6a8;
+}
+
+.philosophy-banner {
+  border-left-color: #9e1720;
+}
+
+.badge-red {
+  color: #ff5962;
+  background: #1c090b;
+  border-color: rgba(242, 11, 24, 0.3);
+}
+
+.nav-tab.active,
+.btn-toggle.active {
+  color: #ff7b82;
+  background: linear-gradient(110deg, #260b0e, #131012);
+  border-color: #8f2028;
+}
+
+.btn-add {
+  color: #fff1f1;
+  background: linear-gradient(135deg, #d6101b, #781018);
+  border-color: #e12a34;
+}
+
+.btn-toggle:hover:not(:disabled),
+.nav-tab:hover {
+  border-color: #d4313b;
+  color: #ff9da2;
+}
+
+.suggestion-card {
+  border-left-color: #9c2028;
+}
+
+.suggestion-card > p small,
+.progress-stat strong,
+.alarm-time,
+.progress-suggestions li::marker {
+  color: #ee414a !important;
+}
+
+.progress-bar-track i {
+  background: #d9232d;
+}
+
+@media (max-width: 700px) {
+  .logo-icon {
+    width: 56px;
+    height: 36px;
+    min-width: 56px;
+  }
+}
+
+@media (max-width: 420px) {
+  .logo-icon {
+    width: 48px;
+    height: 32px;
+    min-width: 48px;
+  }
+}
