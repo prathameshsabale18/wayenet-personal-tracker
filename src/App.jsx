@@ -134,10 +134,11 @@ const DEFAULT_STATE = {
   remindersSent: [],
   nonNegotiables: [],
   behaviorRules: [
-    { id: "br-social", text: "NO MAIN SOCIAL MEDIA ON PHONE — ONLY FOR POSTING / WORK", done: false },
-    { id: "br-caffeine", text: "NO TEA / COFFEE IN THE MORNING", done: false },
-    { id: "br-porn", text: "NO PORNOGRAPHY / NO FAP", done: false },
-    { id: "br-movies", text: "NO MOVIES ON WEEKDAYS — WEEKENDS ONLY", done: false }
+    { id: "br-movies", text: "NO MOVIES ON WEEKDAYS — WEEKENDS ONLY", done: false },
+    { id: "br-water", text: "DRINK 3+ LITERS OF WATER PER DAY", done: false },
+    { id: "br-porn", text: "NO PORN / NOFAP", done: false },
+    { id: "br-spiritual", text: "READ HANUMAN CHALISA AND CHANT ‘OM NAMAH SHIVAYA’ ONE MALA IN THE MORNING", done: false },
+    { id: "br-night-drill", text: "NIGHT STRETCH AND ABS DRILL", done: false }
   ],
   alarms: [],
   distractions: []
@@ -1167,7 +1168,7 @@ export default function WaynenetApp() {
 
             <section className="progress-two-column">
               <div className="hud-panel">
-                <div className="hud-panel-title"><span>FOUR NON-NEGOTIABLES</span><span className="badge-red">FIXED DAILY RULES</span></div>
+                <div className="hud-panel-title"><span>FIVE NON-NEGOTIABLES</span><span className="badge-red">FIXED DAILY RULES</span></div>
                 <p className="progress-storage-note">These are reviewed together at day end. They are not ranked or treated as tasks.</p>
                 {appData.behaviorRules.map((rule, index) => <div className="discipline-order-row" key={rule.id}>
                   <b>{String(index + 1).padStart(2, "0")}</b><span>{rule.text}</span><small>5 PTS IF KEPT</small>
